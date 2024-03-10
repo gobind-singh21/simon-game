@@ -36,7 +36,18 @@ function generatePattern() {
     pattern.push(color);
 }
 
-$(document).keypress(function (event) {
+$(document).on("click", function (event) {
+    if(level > 0)
+        return;
+    level++;
+    $("#level-title").text("Level "+level);
+    index = 0;
+    setTimeout(function () {
+        generatePattern();
+    }, 100);
+});
+
+$(document).keypress(function () {
     if(level > 0)
         return;
     level++;
