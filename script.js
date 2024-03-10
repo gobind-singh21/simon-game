@@ -2,6 +2,8 @@
 
 var pattern = [];
 
+var gameOngoing = true;
+
 var index = 0;
 
 var level = 0;
@@ -36,7 +38,9 @@ function generatePattern() {
     pattern.push(color);
 }
 
-$(document).on("click", function (event) {
+$(document).on("click", function () {
+    if(!gameOngoing)
+        return;
     if(level > 0)
         return;
     level++;
@@ -85,5 +89,9 @@ $(".btn").click(function (event) {
         setTimeout(function () {
             $('body').removeClass('game-over');
         }, 100);
+        gameOngoing = false;
+        setTimeout(function () {
+            gameOngoing = true;
+        }, 1);
     }
 });
